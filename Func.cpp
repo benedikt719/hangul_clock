@@ -1,12 +1,12 @@
 #include"Arduino.h"
 #include"Func.h"
 
-void Func::Setup(){
+void Func::ledOn(int Leds){
 
-    for(int i=0;i<=13;i++){
-      pinmode(i,OUTPUT);
-    }
-
+    digitalWrite(latchPin,LOW);
+    shiftOut(dataPin,latchPin,LSBFIRST,Leds)
+    digitalWrite(latchPin,HIGH);
+    //delay를 줘야할지 그냥 해도 될 지 모르겟다.
 
 
 }
@@ -14,22 +14,22 @@ void Func::Setup(){
 void Func::FilterHour(int Hour){
 
   int a = 1;
-  int Hour1 = 0;
+  int Hour12 = 0;
   
   if (Hour >= 12){
-    Hour1 = Hour - 12;
+    Hour12 = Hour - 12;
     Serial.println("지금은 오후 ");
   }////오후 표시 led 점등
 
   else{
     Serial.println("지금은 오전 ");
-    Hour1 = Hour;
+    Hour12 = Hour;
   }
 
-  switch (Hour1) {
+  switch (Hour12) {
     ///pinmode led 점등 부분 // 나중에 라이브러리로 작성
     case 0:
-     Serial.println("12시 ");
+     
       break;
     case 1:
       Serial.println("1시 ");

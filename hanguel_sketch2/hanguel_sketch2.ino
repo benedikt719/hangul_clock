@@ -60,6 +60,7 @@ void loop(void)
 
     int hours = tm.Hour;
     int minutes = tm.Minute;
+    int seconds = tm.second;
     Func.FilterHour(hours);
     Func.FilterMin(minutes);
   }
